@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demineur", "Demineur\Demineur\Demineur.csproj", "{469BA2F0-CF3A-4EBB-9AFA-5D341487E863}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demineur.Client", "Demineur\Demineur.Client\Demineur.Client.csproj", "{F8C2E917-9D26-4D4E-8017-0CE7B7447CAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{469BA2F0-CF3A-4EBB-9AFA-5D341487E863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{469BA2F0-CF3A-4EBB-9AFA-5D341487E863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{469BA2F0-CF3A-4EBB-9AFA-5D341487E863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{469BA2F0-CF3A-4EBB-9AFA-5D341487E863}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8C2E917-9D26-4D4E-8017-0CE7B7447CAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8C2E917-9D26-4D4E-8017-0CE7B7447CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8C2E917-9D26-4D4E-8017-0CE7B7447CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8C2E917-9D26-4D4E-8017-0CE7B7447CAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
