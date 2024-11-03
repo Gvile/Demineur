@@ -1,0 +1,45 @@
+﻿@page "/Game/{Id:int}"
+@inherits GameBase
+
+<style>
+
+    .grid
+    {
+        width: auto;
+        height: auto;
+
+        display: grid;
+        grid-template-columns: repeat(@Grid.GetLength(1), 1fr);
+        grid-template-rows: repeat(@Grid.GetLength(0), 1fr);
+        
+        gap: 6px;
+    }
+    
+</style>
+
+<PageTitle>Game</PageTitle>
+
+<div class="board">
+    
+    <div class="grid">
+    
+        @for (var row = 0; row < Grid.GetLength(0); row++)
+        {
+            for (var column = 0; column < Grid.GetLength(1); column++)
+            {
+                var cell = Grid[row, column];
+
+                if (cell.IsBomb)
+                {
+                    <div class="grid__cell-bomb"></div>
+                }
+                else
+                {
+                    <div class="grid__cell"></div>
+                }
+            }
+        }
+
+    </div>
+    
+</div>
