@@ -1,0 +1,13 @@
+﻿@page "/"
+@inherits HomeBase
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Accueil</PageTitle>
+
+<div class="menu">
+    
+    <button class="menu__button-easy" @onclick="() => GoToGamePage(0)">Easy</button>
+    <button class="menu__button-medium" @onclick="() => GoToGamePage(1)">Medium</button>
+    <button class="menu__button-hard" @onclick="() => GoToGamePage(2)">Hard</button>
+    
+</div>
