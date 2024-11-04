@@ -29,6 +29,7 @@ public class GameBase : ComponentBase
     {
         InitGrid();
         AddBombs();
+        AddNumbers();
     }
 
     private void InitGrid()
@@ -53,13 +54,28 @@ public class GameBase : ComponentBase
             var randomRow = random.Next(Grid.GetLength(0));
             var randomColumn = random.Next(Grid.GetLength(1));
 
-            if (Grid[randomRow, randomColumn].IsBomb)
+            var cell = Grid[randomRow, randomColumn];
+            if (cell.IsBomb)
             {
                 i--;
             }
             else
             {
-                Grid[randomRow, randomColumn].IsBomb = true;
+                cell.IsBomb = true;
+            }
+        }
+    }
+
+    private void AddNumbers()
+    {
+        var random = new Random();
+            
+        for (var row = 0; row < Grid.GetLength(0); row++)
+        {
+            for (var column = 0; column < Grid.GetLength(1); column++)
+            {
+                var cell = Grid[row, column];
+                cell.Number = random.Next(10);
             }
         }
     }

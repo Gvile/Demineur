@@ -20,9 +20,9 @@
 <PageTitle>Game</PageTitle>
 
 <div class="board">
-    
+
     <div class="grid">
-    
+
         @for (var row = 0; row < Grid.GetLength(0); row++)
         {
             for (var column = 0; column < Grid.GetLength(1); column++)
@@ -35,11 +35,14 @@
                 }
                 else
                 {
-                    <div class="grid__cell"></div>
+                    if (cell.Number != 0)
+                    {
+                        <div class="grid__cell-number">@cell.Number</div>
+                    }
                 }
             }
         }
 
     </div>
-    
+
 </div>
