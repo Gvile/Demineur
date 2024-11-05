@@ -35,9 +35,13 @@
                 }
                 else
                 {
-                    if (cell.Number != 0)
+                    if (cell.Number != 0) // != veur dire que c'est diférent de 0
                     {
                         <div class="grid__cell-number">@cell.Number</div>
+                    }
+                    else
+                    {
+                        <div class="grid__cell-number0"></div>
                     }
                 }
             }

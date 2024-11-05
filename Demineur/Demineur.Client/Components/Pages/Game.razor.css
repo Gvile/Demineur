@@ -10,14 +10,6 @@
     overflow: hidden;
 }
 
-.grid__cell 
-{
-    width: 50px;
-    height: 50px;
-    
-    background-color: aquamarine;
-}
-
 .grid__cell-bomb
 {
     width: 50px;
@@ -33,10 +25,10 @@
     background-color: yellow;
 
 }
+
 .grid__cell-number0
 {
     width: 50px;
     height: 50px;
-    background-color: lightgoldenrodyellow;
-
+    background-color: dodgerblue;
 }
