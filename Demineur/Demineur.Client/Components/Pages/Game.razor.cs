@@ -75,7 +75,36 @@ public class GameBase : ComponentBase
             for (var column = 0; column < Grid.GetLength(1); column++)
             {
                 var cell = Grid[row, column];
-                cell.Number = random.Next(10);
+
+                if (cell.IsBomb)
+                {
+                    continue;
+                }
+                
+                var bombCount = 0;
+
+                for (var x = row - 1; x <= row + 1; x++)
+                {
+                    for (var y = column - 1; y <= column + 1; y++)
+                    {
+                        // || dans une condition if, signifie OU
+                        // && dans une condition if, signifie ET
+                        
+                        if (x <= -1 || x > Grid.GetLength(0) - 1 || y <= -1 || y > Grid.GetLength(1) - 1)
+                        {
+                            continue;
+                        }
+                            
+                        var infoBomb = Grid[x, y].IsBomb;
+
+                        if (infoBomb == true)
+                        {
+                            bombCount++;
+                        }
+                    }
+                }
+                    
+                cell.Number = bombCount;
             }
         }
     }
