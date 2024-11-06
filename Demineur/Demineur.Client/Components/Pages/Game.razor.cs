@@ -111,16 +111,20 @@ public class GameBase : ComponentBase
 
     public void OnButtonClick(Cell cell)
     {
-        cell.IsDiscovered = true;
         RevealAdjacentCells(cell);
     }
 
     private void RevealAdjacentCells(Cell cell)
     {
+        if (cell.IsDiscovered)
+        {
+            return;
+        }
+        
+        cell.IsDiscovered = true;
+        
         if (cell.Number == 0)
         {
-            cell.IsDiscovered = true;
-
             for (var x = cell.Row - 1; x <= cell.Row + 1; x++)
             {
                 for (var y = cell.Column - 1; y <= cell.Column + 1; y++)
@@ -140,10 +144,6 @@ public class GameBase : ComponentBase
                     RevealAdjacentCells(cellBis);
                 }
             }
-        }
-        else
-        {
-            
         }
     }
 
