@@ -1,5 +1,6 @@
 ﻿@page "/Game/{Id:int}"
 @inherits GameBase
+@rendermode InteractiveWebAssembly
 
 <style>
 
@@ -29,20 +30,27 @@
             {
                 var cell = Grid[row, column];
 
-                if (cell.IsBomb)
+                if (cell.IsDiscovered)
                 {
-                    <div class="grid__cell-bomb"></div>
-                }
-                else
-                {
-                    if (cell.Number != 0) // != veur dire que c'est diférent de 0
+                    if (cell.IsBomb)
                     {
-                        <div class="grid__cell-number">@cell.Number</div>
+                        <div class="grid__cell-bomb"></div>
                     }
                     else
                     {
-                        <div class="grid__cell-number0"></div>
+                        if (cell.Number != 0) // != veur dire que c'est diférent de 0
+                        {
+                            <div class="grid__cell-number">@cell.Number</div>
+                        }
+                        else
+                        {
+                            <div class="grid__cell-number0"></div>
+                        }
                     }
+                }
+                else
+                {
+                    <button @onclick="() => OnButtonClick(cell)" class="grid__cell-undiscovered"></button>
                 }
             }
         }

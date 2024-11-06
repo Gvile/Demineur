@@ -109,5 +109,10 @@ public class GameBase : ComponentBase
         }
     }
 
+    public void OnButtonClick(Cell cell)
+    {
+        cell.IsDiscovered = true;
+    }
+
     #endregion
 }
