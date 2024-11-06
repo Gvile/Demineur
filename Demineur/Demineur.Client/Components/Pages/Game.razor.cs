@@ -11,6 +11,7 @@ public class GameBase : ComponentBase
     public Cell[,] Grid = new Cell[8, 8];
 
     private int _bombCount = 10;
+    public bool IsGameOver;
 
     #endregion
 
@@ -111,7 +112,15 @@ public class GameBase : ComponentBase
 
     public void OnButtonClick(Cell cell)
     {
-        RevealAdjacentCells(cell);
+        if (cell.IsBomb)
+        {
+            IsGameOver = true;
+            RevealAllCells();
+        }
+        else
+        {
+            RevealAdjacentCells(cell);
+        }
     }
 
     private void RevealAdjacentCells(Cell cell)
@@ -143,6 +152,18 @@ public class GameBase : ComponentBase
                     
                     RevealAdjacentCells(cellBis);
                 }
+            }
+        }
+    }
+
+    private void RevealAllCells()
+    {
+        for (var row = 0; row < Grid.GetLength(0); row++)
+        {
+            for (var column = 0; column < Grid.GetLength(1); column++)
+            {
+                var cell = Grid[row, column];
+                cell.IsDiscovered = true;
             }
         }
     }
