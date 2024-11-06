@@ -12,6 +12,7 @@ public class GameBase : ComponentBase
 
     private int _bombCount = 10;
     public bool IsGameOver;
+    public bool IsWin;
 
     #endregion
 
@@ -120,6 +121,7 @@ public class GameBase : ComponentBase
         else
         {
             RevealAdjacentCells(cell);
+            CheckWin();
         }
     }
 
@@ -166,6 +168,25 @@ public class GameBase : ComponentBase
                 cell.IsDiscovered = true;
             }
         }
+    }
+
+    private void CheckWin()
+    {
+        for (var row = 0; row < Grid.GetLength(0); row++)
+        {
+            for (var column = 0; column < Grid.GetLength(1); column++)
+            {
+                var cell = Grid[row, column];
+
+                if (!cell.IsDiscovered && !cell.IsBomb)
+                {
+                    return;
+                }
+            }
+        }
+        
+        IsWin = true;
+        RevealAllCells();
     }
 
     #endregion
