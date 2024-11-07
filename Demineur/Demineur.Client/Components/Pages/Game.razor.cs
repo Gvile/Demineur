@@ -138,16 +138,24 @@ public class GameBase : ComponentBase
 
     public void OnButtonClick(Cell cell)
     {
-        if (cell.IsBomb)
+        if (cell.IsFlag)
         {
-            IsGameOver = true;
-            RevealAllCells();
+            
         }
         else
         {
-            RevealAdjacentCells(cell);
-            CheckWin();
+            if (cell.IsBomb)
+            {
+                IsGameOver = true;
+                RevealAllCells();
+            }
+            else
+            {
+                RevealAdjacentCells(cell);
+                CheckWin();
+            }  
         }
+        
     }
 
     public void SetFlag(Cell cell)
