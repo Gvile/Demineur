@@ -9,10 +9,15 @@ public class GameBase : ComponentBase
     [Parameter] public int Id { get; set; }
 
     public Cell[,] Grid = new Cell[8, 8];
+    
+    private System.Timers.Timer? _timer;
+    private int _secondsElapsed;
 
     private int _bombCount = 10;
     public bool IsGameOver;
     public bool IsWin;
+    
+    private bool _timerIsStarted;
 
     #endregion
 
@@ -37,6 +42,17 @@ public class GameBase : ComponentBase
 
     private void Init()
     {
+        if (_timer is not null)
+        {
+            _timer.Stop();
+            _timer.Dispose();
+            _timerIsStarted = false;
+            _secondsElapsed = 0;
+        }
+        
+        _timer = new System.Timers.Timer(1000);
+        _timer.Elapsed += UpdateTime;
+        
         IsGameOver = false;
         IsWin = false;
 
@@ -138,6 +154,12 @@ public class GameBase : ComponentBase
 
     public void OnButtonClick(Cell cell)
     {
+        if (_timer is not null || _timerIsStarted)
+        {
+            _timer.Start();
+            _timerIsStarted = true;
+        }
+        
         if (cell.IsFlag)
         {
             
@@ -148,6 +170,11 @@ public class GameBase : ComponentBase
             {
                 IsGameOver = true;
                 RevealAllCells();
+                if (_timer is not null)
+                {
+                    _timer.Stop();
+                    _timer.Elapsed -= UpdateTime;
+                }
             }
             else
             {
@@ -232,6 +259,24 @@ public class GameBase : ComponentBase
 
         IsWin = true;
         RevealAllCells();
+        if (_timer is not null)
+        {
+            _timer.Stop();
+            _timer.Elapsed -= UpdateTime;
+        }
+    }
+    
+    private void UpdateTime(object? sender, System.Timers.ElapsedEventArgs e)
+    {
+        _secondsElapsed++;
+        InvokeAsync(StateHasChanged);
+    }
+    
+    public string FormatTime()
+    {
+        var minutes = _secondsElapsed / 60;
+        var seconds = _secondsElapsed % 60;
+        return $"{minutes:D2}:{seconds:D2}";
     }
 
     #endregion
