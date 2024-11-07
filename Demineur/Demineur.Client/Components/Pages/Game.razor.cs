@@ -150,6 +150,18 @@ public class GameBase : ComponentBase
         }
     }
 
+    public void SetFlag(Cell cell)
+    {
+        if (cell.IsDiscovered)
+        {
+            
+        }
+        else
+        {
+            cell.IsFlag = !cell.IsFlag;
+        }
+    }
+
     private void RevealAdjacentCells(Cell cell)
     {
         if (cell.IsDiscovered)

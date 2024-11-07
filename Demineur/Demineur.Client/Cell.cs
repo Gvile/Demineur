@@ -5,6 +5,7 @@ public class Cell
     public int Row { get; set; }
     public int Column { get; set; }
     public bool IsBomb { get; set; }
+    public bool IsFlag { get; set; }
     public int Number { get; set; }
     public bool IsDiscovered { get; set; }
 

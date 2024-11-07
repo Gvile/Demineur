@@ -63,7 +63,19 @@
                 }
                 else
                 {
-                    <button @onclick="() => OnButtonClick(cell)" class="grid__cell-undiscovered"></button>
+                    var _buttonText = "";
+
+                    if (cell.IsFlag)
+                    {
+                        _buttonText = "🚩";
+                    }
+
+                    <button @onclick="() => OnButtonClick(cell)"
+                            @oncontextmenu="() => SetFlag(cell)"
+                            @oncontextmenu:preventDefault="true"
+                            class="grid__cell-undiscovered">
+                        @_buttonText
+                    </button>
                 }
             }
         }
