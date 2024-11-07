@@ -27,20 +27,45 @@ public class GameBase : ComponentBase
 
     #region Fonctions
 
-    private void CreateGame()
+    public void CreateGame()
     {
+        Init();
         InitGrid();
         AddBombs();
         AddNumbers();
     }
 
+    private void Init()
+    {
+        IsGameOver = false;
+        IsWin = false;
+
+        if (Id == 0)
+        {
+            _bombCount = 5;
+            Grid = new Cell[8, 8];
+            
+        }
+        else if (Id == 1)
+        {
+            _bombCount = 12;
+            Grid = new Cell[10, 10];
+        }
+        else if (Id == 2)
+        {
+            _bombCount = 30;
+            Grid = new Cell[12, 12];
+        }
+    }
+
     private void InitGrid()
     {
-        Grid = new Cell[8, 8];
 
         for (var row = 0; row < Grid.GetLength(0); row++) // Grid.GetLength(0) = X donc 1er valeur dans ma grid
         {
-            for (var column = 0; column < Grid.GetLength(1); column++) // Grid.GetLength(1) = Y donc 2eme valeur dans ma grid
+            for (var column = 0;
+                 column < Grid.GetLength(1);
+                 column++) // Grid.GetLength(1) = Y donc 2eme valeur dans ma grid
             {
                 Grid[row, column] = new Cell(row, column);
             }
@@ -71,7 +96,7 @@ public class GameBase : ComponentBase
     private void AddNumbers()
     {
         var random = new Random();
-            
+
         for (var row = 0; row < Grid.GetLength(0); row++)
         {
             for (var column = 0; column < Grid.GetLength(1); column++)
@@ -82,7 +107,7 @@ public class GameBase : ComponentBase
                 {
                     continue;
                 }
-                
+
                 var bombCount = 0;
 
                 for (var x = row - 1; x <= row + 1; x++)
@@ -91,12 +116,12 @@ public class GameBase : ComponentBase
                     {
                         // || dans une condition if, signifie OU
                         // && dans une condition if, signifie ET
-                        
+
                         if (x <= -1 || x > Grid.GetLength(0) - 1 || y <= -1 || y > Grid.GetLength(1) - 1)
                         {
                             continue;
                         }
-                            
+
                         var infoBomb = Grid[x, y].IsBomb;
 
                         if (infoBomb == true)
@@ -105,7 +130,7 @@ public class GameBase : ComponentBase
                         }
                     }
                 }
-                    
+
                 cell.Number = bombCount;
             }
         }
@@ -131,9 +156,9 @@ public class GameBase : ComponentBase
         {
             return;
         }
-        
+
         cell.IsDiscovered = true;
-        
+
         if (cell.Number == 0)
         {
             for (var x = cell.Row - 1; x <= cell.Row + 1; x++)
@@ -146,12 +171,12 @@ public class GameBase : ComponentBase
                     }
 
                     var cellBis = Grid[x, y];
-                    
+
                     if (cellBis.IsDiscovered)
                     {
                         continue;
                     }
-                    
+
                     RevealAdjacentCells(cellBis);
                 }
             }
@@ -184,7 +209,7 @@ public class GameBase : ComponentBase
                 }
             }
         }
-        
+
         IsWin = true;
         RevealAllCells();
     }

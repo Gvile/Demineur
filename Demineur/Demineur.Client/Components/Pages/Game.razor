@@ -20,14 +20,17 @@
 
 <PageTitle>Game</PageTitle>
 
+
 @if (IsGameOver)
 {
     <h1>GameOver</h1>
+    <button class="button-restart" @onclick="() => CreateGame()">Restart</button>
 }
 
 @if (IsWin)
 {
     <h1>Win</h1>
+    <button class="button-restart" @onclick="() => CreateGame()">Restart</button>
 }
 
 <div class="board">
