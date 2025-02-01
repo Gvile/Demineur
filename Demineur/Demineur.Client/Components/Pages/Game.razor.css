@@ -10,19 +10,28 @@
     overflow: hidden;
 }
 
+.grid__cell
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 1.3em;
+    font-family: impact, serif;
+    
+    background-color: cadetblue;
+}
+
 .grid__cell-bomb
 {
     width: 50px;
     height: 50px;
-
-    background-color: red;
 }
 
 .grid__cell-number
 {
     width: 50px;
     height: 50px;
-    background-color: yellow;
 
 }
 
@@ -30,7 +39,8 @@
 {
     width: 50px;
     height: 50px;
-    background-color: dodgerblue;
+
+    background-color: cadetblue;
 }
 
 .grid__cell-undiscovered

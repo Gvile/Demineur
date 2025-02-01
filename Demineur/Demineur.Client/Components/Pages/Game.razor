@@ -49,13 +49,17 @@
                 {
                     if (cell.IsBomb)
                     {
-                        <div class="grid__cell-bomb"></div>
+                        <div class="grid__cell grid__cell-bomb">
+                            <p>💣</p>
+                        </div>
                     }
                     else
                     {
                         if (cell.Number != 0) // != veur dire que c'est diférent de 0
                         {
-                            <div class="grid__cell-number">@cell.Number</div>
+                            <div class="grid__cell grid__cell-number">
+                                <p>@cell.Number</p>
+                            </div>
                         }
                         else
                         {
